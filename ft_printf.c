@@ -38,7 +38,8 @@ static int	calc_taille_chaine(const char *str)
 	{
 		if (str[i] == '%' && check_carac(str[i + 1]))
 			i += 2;
-		else if (str[i] == '%' && check_carac_bonus(str[i + 1]) && check_carac(str[i + 2]))
+		else if (str[i] == '%'
+			&& check_carac_bonus(str[i + 1]) && check_carac(str[i + 2]))
 			i += 3;
 		else
 		{

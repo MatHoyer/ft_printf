@@ -55,7 +55,7 @@ char	*ft_conv_b_l(unsigned long nb, char *base_to)
 	if (!str)
 		return (NULL);
 	if (nb == 0)
-		str[i++] = base_to[0]; 
+		str[i++] = base_to[0];
 	while (nb > 0)
 	{
 		str[i] = base_to[(nb % taille)];

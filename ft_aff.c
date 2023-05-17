@@ -18,7 +18,8 @@ static char	check_type(const char *str, int i)
 	{
 		if (check_carac(str[i + 1]))
 			return (str[i + 1]);
-		if ((str[i + 1] == '+' || str[i + 1] == ' ') && (str[i + 2] == 'd' || str[i + 2] == 'i'))
+		if ((str[i + 1] == '+' || str[i + 1] == ' ')
+			&& (str[i + 2] == 'd' || str[i + 2] == 'i'))
 		{
 			return (str[i + 1]);
 		}
@@ -45,7 +46,7 @@ int	aff_bonus(int t, va_list p, char type)
 
 int	aff_3(int t, va_list p, char type)
 {
-	unsigned long		adresse;
+	unsigned long	adresse;
 	char			*hexa;
 
 	hexa = "0123456789abcdef";
@@ -82,6 +83,8 @@ int	aff_p2(int t, va_list p, char type)
 		t += case_all(ft_conv_b(va_arg(p, unsigned int), hexa));
 	else if (type == 'X')
 		t += case_all(ft_conv_b(va_arg(p, unsigned int), hexaup));
+	else if (type == 'd' || type == 'i' )
+				t += case_all(ft_itoa(va_arg(p, int)));
 	else if (type == '%')
 	{
 		ft_putchar_fd('%', 1);
@@ -91,8 +94,6 @@ int	aff_p2(int t, va_list p, char type)
 		t = aff_3(t, p, type);
 	return (t);
 }
-
-#include <stdio.h>
 
 int	aff(const char *chaine, int t, va_list p)
 {
@@ -109,8 +110,6 @@ int	aff(const char *chaine, int t, va_list p)
 				t += case_c(va_arg(p, int));
 			else if (type == 's')
 				t += case_s(va_arg(p, char *));
-			else if (type == 'd' || type == 'i' )
-				t += case_all(ft_itoa(va_arg(p, int)));
 			else
 				t = aff_p2(t, p, type);
 			if (check_carac(type))
